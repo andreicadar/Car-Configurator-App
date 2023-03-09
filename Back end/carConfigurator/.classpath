@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="carConfigurator/src/main/java"/>
+	<classpathentry kind="src" path="carConfigurator/src/test/java"/>
+	<classpathentry kind="lib" path="carConfigurator/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="carConfigurator/bin/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="output" path="carConfigurator/target/classes"/>
+</classpath>
