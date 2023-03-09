@@ -1,0 +1,76 @@
+
+
+<!-- HTML -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Configurator</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet'>
+  <style type="text/css">
+  /* CSS */
+body {
+  font-family: sans-serif;
+  background-color: #333;
+  color: white;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #555;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 10px 25px;
+}
+
+button:hover {
+  background-color: #777;
+}
+
+.login-button {
+  background-color: #00b894;
+}
+
+.register-button {
+  background-color: #6c5ce7;
+}
+  img {
+    display: block;
+    margin: auto;
+    width: 50%; /* or any other desired width */
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Car Configurator</h1>
+    <p style ="font-size: 18px;">Please choose an option:</p>
+    <div class="buttons">
+      <button onclick="window.location.href='login.html'" class="login-button">Log in</button>
+      <button onclick="window.location.href='register.html'"  class="register-button">Register</button>
+    </div>
+	
+	<div style="text-align: center;">
+		<img src="DSC00006.jpg" alt="A beautiful landscape" style="width: 100%; margin-top:30px">
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,190 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  color: #fff;
+}
+
+h1 {
+  text-align: center;
+}
+
+nav {
+  background-color: #444;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+nav li#configured-cars .dropdown {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  width: 150px;
+}
+
+nav li#configured-cars {
+  float: right;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  color: #fff;
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.dropdown {
+  background-color: #444;
+  display: none;
+  left: 0;
+  min-width: 6rem;
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+}
+
+.dropdown-item {
+  color: #fff;
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+
+.dropdown-item:hover {
+  background-color: #555;
+}
+
+li:hover .dropdown {
+  display: block;
+}
+
+#content {
+  margin: 2rem;
+}
+
+#presentation {
+  background-color: #444;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  left: 10%;
+  margin-left: 10px; /* Half of the width of the element */
+  margin-top: 35px;
+  padding: 1rem;
+  position: fixed;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+}
+
+#presentation-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#presentation-table th,
+#presentation-table td {
+  border: 1px solid #333;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+#presentation-table th {
+  font-size: 20px;
+  background-color: #555;
+  font-weight: bold;
+}
+
+#presentation-table tr:nth-child(even) {
+  background-color: #666;
+}
+
+#car-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#rim-image1 {
+  position: absolute;
+  top: 535px;
+  left: 710px;
+}
+
+#rim-image2 {
+  position: absolute;
+  top: 535px;
+  left: 1130px;
+}
+
+#price {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  position: relative;
+  top: 20px;
+  right: -1810px;
+}
+
+#price:before {
+  content: "$ ";
+}
+
+.invisible {
+  display: none;
+}
+
+nav li:hover .dropdown {
+  display: block;
+  animation: dropdown-appear 0.5s ease-in;
+}
+
+@keyframes dropdown-appear {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#configure-car-button {
+  transition: all 0.1s ease-in-out;
+  font-size: 1.3rem; /* medium-sized text */
+  padding: 0.75rem 1.5rem; /* medium-sized button */
+  background-color: #4caf50; /* green background */
+  color: white; /* white text */
+  border-radius: 5px; /* rounded corners */
+  border: none; /* no border */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* subtle shadow */
+  cursor: pointer; /* changes cursor to a hand when hFovering over the button */
+}
+
+#button-container {
+  position: fixed; /* position element relative to the viewport */
+  bottom: 5%; /* position element at the bottom of the viewport */
+  left: 0; /* position element at the left of the viewport */
+  right: 0; /* make the container span the full width of the viewport */
+  text-align: center; /* center the button horizontally within the container */
+  padding: 1rem; /* add some padding to the container */
+}
+
+#configure-car-button:active {
+  transform: scale(0.9);
+}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Configure the car</title>
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body>
+    <h1>Configurator</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Engine</a>
+          <ul id="engines" class="dropdown"></ul>
+        </li>
+        <li>
+          <a href="#">Paint</a>
+          <ul id="paints" class="dropdown"></ul>
+        </li>
+        <li>
+          <a href="#">Rims</a>
+          <ul id="rims" class="dropdown"></ul>
+        </li>
+        <li>
+          <a href="#">Configured cars</a>
+          <ul id="configured-cars" class="dropdown"></ul>
+        </li>
+      </ul>
+    </nav>
+    <div id="price">0</div>
+    <div id="presentation">
+      <h2 id="presentation-title"></h2>
+      <table id="presentation-table">
+        <!--  <tr>
+        <th>Property</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td id="name-value"></td>
+      </tr>
+      <tr>
+        <td>Power</td>
+        <td id="power-value"></td>
+      </tr>
+      <tr>
+        <td>Torque</td>
+        <td id="torque-value"></td>
+      </tr>
+      <tr>
+        <td>Capacity</td>
+        <td id="capacity-value"></td>
+      </tr>
+      <tr>
+        <td>Consumption</td>
+        <td id="consumption-value"></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td id="price-value"></td>
+      </tr>-->
+        <!-- Add more rows for additional properties -->
+      </table>
+    </div>
+    <img
+      id="car-image"
+      src="placeholder.png"
+      alt="Car"
+      width="750"
+      height="495"
+    />
+    <img
+      id="rim-image1"
+      src="placeholder.png"
+      alt="Rim"
+      width="110"
+      height="110"
+    />
+    <img
+      id="rim-image2"
+      src="placeholder.png"
+      alt="Rim"
+      width="110"
+      height="110"
+    />
+
+    <div id="content"></div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+      const username = urlParams.get("username");
+
+      fetch(
+        "http://127.0.0.1:8080/api/users/verifyLogin?username=" + username,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+          method: "POST",
+        }
+      ).then((response) => {
+        if (!response.ok) {
+          window.location.href = "login.html";
+        }
+      });
+
+      const rim1 = document.getElementById("rim-image1");
+      rim1.classList.add("invisible");
+
+      const rim2 = document.getElementById("rim-image2");
+      rim2.classList.add("invisible");
+
+      var engines = new Array();
+      var paints = new Array();
+      var rims = new Array();
+      var configuredCars = new Array();
+
+      var selectedEngine = { price: 0 };
+      var selectedPaint = { price: 0 };
+      var selectedRims = { price: 0 };
+
+      function getTotalCost() {
+        const priceElement = document.getElementById("price");
+        priceElement.textContent =
+          20000 +
+          selectedEngine.price +
+          selectedPaint.price +
+          selectedRims.price;
+      }
+
+      fetch("http://127.0.0.1:8080/api/users/getEngines?username=" + username, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((menu1Data) => {
+          const menu1Dropdown = document.getElementById("engines");
+          menu1Data.forEach((item) => {
+            const menu1Item = document.createElement("li");
+            menu1Item.classList.add("dropdown-item");
+            menu1Item.textContent = item.name;
+            menu1Dropdown.appendChild(menu1Item);
+            engines.push(item);
+          });
+        });
+
+      fetch("http://127.0.0.1:8080/api/users/getPaints?username=" + username, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((menu1Data) => {
+          const menu1Dropdown = document.getElementById("paints");
+          menu1Data.forEach((item) => {
+            const menu1Item = document.createElement("li");
+            menu1Item.classList.add("dropdown-item");
+            menu1Item.textContent = item.name;
+            menu1Dropdown.appendChild(menu1Item);
+            paints.push(item);
+          });
+        })
+
+        .catch((error) => {
+          console.error(error);
+        });
+
+      fetch("http://127.0.0.1:8080/api/users/getRims?username=" + username, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((menu1Data) => {
+          const menu1Dropdown = document.getElementById("rims");
+          menu1Data.forEach((item) => {
+            const menu1Item = document.createElement("li");
+            menu1Item.classList.add("dropdown-item");
+            menu1Item.textContent = item.name;
+            menu1Dropdown.appendChild(menu1Item);
+            rims.push(item);
+          });
+        })
+
+        .catch((error) => {
+          console.error(error);
+        });
+
+      fetch("http://127.0.0.1:8080/api/users/carsOfUser?username=" + username, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((menu1Data) => {
+          const menu1Dropdown = document.getElementById("configured-cars");
+          menu1Data.forEach((item, index) => {
+            const menu1Item = document.createElement("li");
+            menu1Item.classList.add("dropdown-item");
+            menu1Item.textContent = "Car " + (index + 1);
+            item.name = "Car " + (index + 1);
+            menu1Dropdown.appendChild(menu1Item);
+            configuredCars.push(item);
+          });
+        })
+
+        .catch((error) => {
+          console.error(error);
+        });
+
+      var dropdownItems = document.querySelectorAll("li");
+
+      const presentationTable = document.querySelector("#presentation-table");
+      const cellsToDelete = presentationTable.querySelectorAll("tr");
+      cellsToDelete.forEach((cell) => {
+        cell.parentNode.removeChild(cell);
+      });
+
+      dropdownItems.forEach((item) => {
+        item.addEventListener("click", (event) => {
+          console.log(event);
+          /* if (event.path[1].id == "configured-cars") {
+          }*/
+
+          const presentationTitle = document.querySelector(
+            "#presentation-table"
+          );
+          presentationTitle.textContent = "";
+          //tre sa vad care element ii
+          var object = null;
+          for (var i = 0; i < engines.length; i++) {
+            if (engines[i].name == event.target.textContent) {
+              object = engines[i];
+              selectedEngine = engines[i];
+              break;
+            }
+          }
+
+          if (object == null) {
+            for (var i = 0; i < paints.length; i++) {
+              if (paints[i].name == event.target.textContent) {
+                object = paints[i];
+                selectedPaint = paints[i];
+                const image = document.getElementById("car-image");
+                image.src = object.paintCode;
+                break;
+              }
+            }
+          }
+
+          if (object == null) {
+            for (var i = 0; i < rims.length; i++) {
+              console.log(rims[i].name + "    " + event.target.textContent);
+              if (rims[i].name == event.target.textContent) {
+                object = rims[i];
+                selectedRims = rims[i];
+                const image = document.getElementById("rim-image1");
+                const image2 = document.getElementById("rim-image2");
+                image.src = object.pathPoza;
+                image2.src = object.pathPoza;
+                break;
+              }
+            }
+          }
+
+          if (object == null) {
+            for (var i = 0; i < configuredCars.length; i++) {
+              if (configuredCars[i].name == event.target.textContent) {
+                console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+                object = configuredCars[i];
+                //select engine
+                for (var i = 0; i < engines.length; i++) {
+                  if (engines[i].name == object.engine.name) {
+                    selectedEngine = engines[i];
+                    break;
+                  }
+                }
+                for (var i = 0; i < rims.length; i++) {
+                  if (rims[i].name == object.rim.name) {
+                    selectedRims = rims[i];
+                    const image = document.getElementById("rim-image1");
+                    const image2 = document.getElementById("rim-image2");
+                    image.src = selectedRims.pathPoza;
+                    image2.src = selectedRims.pathPoza;
+                    break;
+                  }
+                }
+                for (var i = 0; i < paints.length; i++) {
+                  if (paints[i].name == object.paint.name) {
+                    selectedPaint = paints[i];
+                    const image = document.getElementById("car-image");
+                    image.src = selectedPaint.paintCode;
+                    break;
+                  }
+                }
+                break;
+              }
+            }
+          }
+
+          getTotalCost();
+          console.log(selectedPaint.name);
+          console.log(selectedRims.name);
+          const exampleElement = document.getElementById("rim-image1");
+          if (
+            selectedPaint.name != undefined &&
+            selectedRims.name != undefined
+          ) {
+            exampleElement.classList.remove("invisible");
+          } else {
+            exampleElement.classList.add("invisible");
+          }
+
+          const exampleElement2 = document.getElementById("rim-image2");
+          if (
+            selectedPaint.name != undefined &&
+            selectedRims.name != undefined
+          ) {
+            exampleElement2.classList.remove("invisible");
+          } else {
+            exampleElement2.classList.add("invisible");
+          }
+
+          const presentationTable = document.querySelector(
+            "#presentation-table"
+          );
+
+          if (
+            event.target.textContent != "Engine" &&
+            event.target.textContent != "Paint" &&
+            event.target.textContent != "Rims" &&
+            object.engine == undefined
+          ) {
+            const rowH = document.createElement("tr");
+            const propertyH = document.createElement("th");
+            propertyH.textContent = "Property";
+            rowH.appendChild(propertyH);
+            const ValueH = document.createElement("th");
+            ValueH.textContent = "Value";
+            rowH.appendChild(ValueH);
+            presentationTable.appendChild(rowH);
+
+            const objectKeys = Object.keys(object);
+            objectKeys.forEach((key) => {
+              const row = document.createElement("tr");
+
+              const propertyCell = document.createElement("td");
+              propertyCell.textContent = key;
+              row.appendChild(propertyCell);
+
+              const valueCell = document.createElement("td");
+              valueCell.textContent = object[key];
+              valueCell.setAttribute("id", "key".concat("-value"));
+              row.appendChild(valueCell);
+
+              presentationTable.appendChild(row);
+            });
+          }
+          console.log(object);
+          if (object.engine != undefined) {
+            const rowH = document.createElement("tr");
+            const propertyH = document.createElement("th");
+            propertyH.textContent = "Part of car";
+            rowH.appendChild(propertyH);
+            const ValueH = document.createElement("th");
+            ValueH.textContent = "Name";
+            rowH.appendChild(ValueH);
+            presentationTable.appendChild(rowH);
+
+            const objectKeys = Object.keys(object);
+            objectKeys.forEach((key) => {
+              console.log(key);
+              const row = document.createElement("tr");
+
+              const propertyCell = document.createElement("td");
+              propertyCell.textContent = key;
+              row.appendChild(propertyCell);
+
+              const valueCell = document.createElement("td");
+              if (object[key].name != undefined)
+                valueCell.textContent = object[key].name;
+              else valueCell.textContent = object.name;
+              valueCell.setAttribute("id", "key".concat("-value"));
+              row.appendChild(valueCell);
+
+              presentationTable.appendChild(row);
+            });
+          }
+
+          if (
+            selectedEngine.name != undefined &&
+            selectedPaint.name != undefined &&
+            selectedRims.name != undefined
+          ) {
+            const configureButton = document.getElementById("button-container");
+            configureButton.classList.remove("invisible");
+          }
+        });
+      });
+
+      function configureCar() {
+        console.log("aaa");
+        fetch(
+          "http://127.0.0.1:8080/api/users/addConfiguredCar?username=" +
+            username +
+            "&rimID=" +
+            selectedRims.rimID +
+            "&paintID=" +
+            selectedPaint.paintID +
+            "&engineID=" +
+            selectedEngine.engineID,
+          {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
+            method: "POST",
+          }
+        );
+      }
+    </script>
+    <div id="button-container">
+      <button id="configure-car-button" onClick="configureCar()">
+        Configure Car
+      </button>
+    </div>
+    <script>
+      const configureButton = document.getElementById("button-container");
+      configureButton.classList.add("invisible");
+    </script>
+  </body>
+</html>
