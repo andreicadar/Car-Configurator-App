@@ -20,11 +20,14 @@ The purpose of the project was to display what we have learned during the semest
 The user when entering on [**index.html**](Front%20End/index.html) can register a new account or log in if he already has one.
 ![IndexPage](Media/Index.png)
 
-Simple Log In page with white/dark theme
+[**login.html**](Front%20End/login.html) Simple Log In page with white/dark theme
 ![LoginPage](Media/DarkLogin.png)
+
 ![LoginPage](Media/LightLogin.png)
+
+[**register.html**](Front%20End/register.html) Simple Register page with white/dark theme and common fields
+![RegisterPage](Media/RegisterDark.png)
 
 ## Back-End
 
-It has a simple `Controller -> Service -> DataAccess` layered structure
-Every API call except **/login** requires a JWT authentication token
+It has a simple `Controller -> Service -> DataAccess` layered structure. Every API call except **/login** requires a JWT authentication token
