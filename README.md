@@ -17,15 +17,15 @@ The purpose of the project was to display what we have learned during the semest
 
 ### Usage
 
-The user when entering on [**index.html**](Front%20End/index.html) can register a new account or log in if he already has one.
+The user when entering on [**index.html**](Front%20end/index.html) can register a new account or log in if he already has one.
 ![IndexPage](Media/Index.png)
 
-[**login.html**](Front%20End/login.html) Simple Log In page with white/dark theme
+[**login.html**](Front%20end/login.html) Simple Log In page with white/dark theme
 ![LoginPage](Media/DarkLogin.png)
 
 ![LoginPage](Media/LightLogin.png)
 
-[**register.html**](Front%20End/register.html) Simple Register page with white/dark theme and common fields
+[**register.html**](Front%20end/register.html) Simple Register page with white/dark theme and common fields
 ![RegisterPage](Media/RegisterDark.png)
 
 ## Back-End
