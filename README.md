@@ -1,6 +1,6 @@
 # Car-Configurator-App
 
-Car configurator app done for the final project for the OOP course at university.
+Car configurator app done for the final project for the OOP course at university. The project was done in less than a week.
 
 ## About
 
@@ -20,16 +20,17 @@ The purpose of the project was to display what we have learned during the semest
 The user when entering on [**index**](Front%20end/index.html) can register a new account or log in if he already has one.
 ![IndexPage](Media/Index.png)
 
-[**login**](Front%20end/login.html) Simple Log In page with white/dark theme
+Simple Log In page with white/dark theme [**login**](Front%20end/login.html)
 ![LoginPage](Media/DarkLogin.png)
 
 ![LoginPage](Media/LightLogin.png)
 
-[**register**](Front%20end/register.html) Simple Register page with white/dark theme and common fields
+Simple Register page with white/dark theme and common fields [**register**](Front%20end/register.html)
 ![RegisterPage](Media/RegisterDark.png)
 
 After successfully loging in the user arrives on his home page [**home**](Front%20end/configureCar.html)
 ![CarPage](Media/BlueCar.png)
+<br>
 Here the user has 4 drop-down menus. He can choose an engine, a set of rims and a paint for the car. After he chooses something the disaplyed car below will be updated acordingly. Also a small description table will appear on the left with details about the selected option.
 ![CarPage](Media/ListConfigured.png)
 <br>
@@ -42,3 +43,11 @@ The price is also displayed on the top right of the screen
 It has a simple `Controller -> Service -> DataAccess` layered structure.
 <br>
 Every API call except **/login** requires a JWT authentication token
+
+## Front-End
+
+Since there were only 4 pages in total it was not worth to use a framework like React or Angular so I have chosen plain simple HTML, JS and CSS.
+<br>
+I may not be Picasso, but I have tried to make the design as good as I can. The **Switch theme** button gives a nice touch to the design, nowadays almost evey page has a dark-theme button.
+<br>
+The [**login**](Front%20end/login.html) and [**register**](Front%20end/register.html) page have an box to display a log message with background <font color="green">green</font> for successful requests and <font color="red">red</font> for unsuccessful requests.
