@@ -50,4 +50,4 @@ Since there were only 4 pages in total it was not worth to use a framework like 
 <br>
 I may not be Picasso, but I have tried to make the design as good as I can. The **Switch theme** button gives a nice touch to the design, nowadays almost evey page has a dark-theme button.
 <br>
-The [**login**](Front%20end/login.html) and [**register**](Front%20end/register.html) page have an box to display a log message with background <font color="green">green</font> for successful requests and <font color="red">red</font> for unsuccessful requests.
+The [**login**](Front%20end/login.html) and [**register**](Front%20end/register.html) page have an box to display a log message with <span style="color:green">green</span> background for successful requests and <span style="color:red">red</span> for unsuccessful requests.
